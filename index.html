@@ -1,0 +1,274 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09090b">
+
+  <title>ZEX — Welcome Back</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: "#8b5cf6"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="min-h-screen bg-zinc-950 text-white antialiased">
+
+  <main class="flex min-h-screen items-center justify-center px-4 py-10">
+
+    <div class="w-full max-w-md">
+
+
+      <div class="mb-8 text-center">
+        <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-600 text-2xl font-black shadow-lg shadow-violet-600/20">
+          Z
+        </div>
+
+        <h1 class="text-3xl font-bold tracking-tight">
+          Welcome to <span class="text-violet-400">ZEX</span>
+        </h1>
+
+        <p class="mt-2 text-sm text-zinc-400">
+          Sign in to continue your journey.
+        </p>
+      </div>
+
+
+      <section class="rounded-2xl border border-zinc-800 bg-zinc-900/80 p-6 shadow-2xl sm:p-8">
+
+
+        <div class="mb-6 grid grid-cols-2 rounded-xl bg-zinc-800 p-1">
+          <button
+            id="loginTab"
+            type="button"
+            class="rounded-lg bg-violet-600 px-4 py-2.5 text-sm font-semibold transition"
+          >
+            Sign In
+          </button>
+
+          <button
+            id="signupTab"
+            type="button"
+            class="rounded-lg px-4 py-2.5 text-sm font-semibold text-zinc-400 transition hover:text-white"
+          >
+            Create Account
+          </button>
+        </div>
+
+
+        <form id="authForm" class="space-y-5">
+
+          <div>
+            <label for="email" class="mb-2 block text-sm font-medium text-zinc-300">
+              Email address
+            </label>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+              required
+              class="w-full rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-3 text-sm outline-none transition placeholder:text-zinc-600 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20"
+            >
+          </div>
+
+          <div>
+            <div class="mb-2 flex items-center justify-between">
+              <label for="password" class="text-sm font-medium text-zinc-300">
+                Password
+              </label>
+
+              <button
+                id="togglePassword"
+                type="button"
+                class="text-xs text-violet-400 hover:text-violet-300"
+              >
+                Show password
+              </button>
+            </div>
+
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Enter your password"
+              minlength="6"
+              required
+              class="w-full rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-3 text-sm outline-none transition placeholder:text-zinc-600 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20"
+            >
+          </div>
+
+          <button
+            id="submitButton"
+            type="submit"
+            class="flex w-full items-center justify-center rounded-xl bg-violet-600 px-4 py-3 font-semibold transition hover:bg-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            Sign In
+          </button>
+
+        </form>
+
+
+        <div class="my-6 flex items-center gap-4">
+          <div class="h-px flex-1 bg-zinc-800"></div>
+          <span class="text-xs uppercase tracking-wider text-zinc-500">
+            Or continue with
+          </span>
+          <div class="h-px flex-1 bg-zinc-800"></div>
+        </div>
+
+
+        <button
+          id="guestButton"
+          type="button"
+          class="flex w-full items-center justify-center gap-3 rounded-xl border border-zinc-700 bg-zinc-800/50 px-4 py-3 font-semibold transition hover:border-violet-500 hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+          </svg>
+
+          Continue as Guest
+        </button>
+
+
+        <div
+          id="message"
+          role="status"
+          aria-live="polite"
+          class="mt-5 hidden rounded-xl border px-4 py-3 text-sm"
+        ></div>
+
+        <p class="mt-6 text-center text-xs leading-5 text-zinc-500">
+          By continuing, you agree to our Terms of Service and Privacy Policy.
+        </p>
+
+      </section>
+
+      <p class="mt-6 text-center text-xs text-zinc-600">
+        &copy; <span id="year"></span> ZEX. All rights reserved.
+      </p>
+
+    </div>
+
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    let mode = "login";
+
+    const loginTab = document.getElementById("loginTab");
+    const signupTab = document.getElementById("signupTab");
+    const password = document.getElementById("password");
+    const submitButton = document.getElementById("submitButton");
+    const message = document.getElementById("message");
+
+    function setMode(newMode) {
+      mode = newMode;
+
+      const isLogin = mode === "login";
+
+      loginTab.className = isLogin
+        ? "rounded-lg bg-violet-600 px-4 py-2.5 text-sm font-semibold transition"
+        : "rounded-lg px-4 py-2.5 text-sm font-semibold text-zinc-400 transition hover:text-white";
+
+      signupTab.className = !isLogin
+        ? "rounded-lg bg-violet-600 px-4 py-2.5 text-sm font-semibold transition"
+        : "rounded-lg px-4 py-2.5 text-sm font-semibold text-zinc-400 transition hover:text-white";
+
+      submitButton.textContent = isLogin ? "Sign In" : "Create Account";
+
+      password.autocomplete = isLogin ? "current-password" : "new-password";
+
+      hideMessage();
+    }
+
+    function showMessage(text, type = "error") {
+      message.textContent = text;
+      message.classList.remove(
+        "hidden",
+        "border-red-500/30",
+        "bg-red-500/10",
+        "text-red-300",
+        "border-emerald-500/30",
+        "bg-emerald-500/10",
+        "text-emerald-300"
+      );
+
+      if (type === "success") {
+        message.classList.add(
+          "border-emerald-500/30",
+          "bg-emerald-500/10",
+          "text-emerald-300"
+        );
+      } else {
+        message.classList.add(
+          "border-red-500/30",
+          "bg-red-500/10",
+          "text-red-300"
+        );
+      }
+    }
+
+    function hideMessage() {
+      message.classList.add("hidden");
+      message.textContent = "";
+    }
+
+    loginTab.addEventListener("click", () => setMode("login"));
+    signupTab.addEventListener("click", () => setMode("signup"));
+
+    document.getElementById("togglePassword").addEventListener("click", () => {
+      const isHidden = password.type === "password";
+
+      password.type = isHidden ? "text" : "password";
+
+      document.getElementById("togglePassword").textContent =
+        isHidden ? "Hide password" : "Show password";
+    });
+
+    document.getElementById("authForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      showMessage(
+        "Login is not connected yet. Configure Supabase in app.js to enable authentication."
+      );
+    });
+
+    document.getElementById("guestButton").addEventListener("click", () => {
+      showMessage(
+        "Guest login is not connected yet. Configure Supabase in app.js to enable guest access."
+      );
+    });
+  </script>
+
+</body>
+</html>
+```

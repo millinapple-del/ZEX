@@ -1,0 +1,22 @@
+{
+  "name": "zex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/millinapple-del/ZEX.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/millinapple-del/ZEX/issues"
+  },
+  "homepage": "https://github.com/millinapple-del/ZEX#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.118.0"
+  }
+}

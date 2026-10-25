@@ -133,11 +133,21 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 document.getElementById('togglePassword')?.addEventListener('click', () => {
   const passwordInputEl = document.getElementById('password');
-  if (!passwordInputEl) return;
+  const toggleBtn = document.getElementById('togglePassword');
+  if (!passwordInputEl || !toggleBtn) return;
+
   const isHidden = passwordInputEl.type === 'password';
   passwordInputEl.type = isHidden ? 'text' : 'password';
-  document.getElementById('togglePassword').textContent =
-    isHidden ? 'Hide password' : 'Show password';
+
+  const icon = toggleBtn.querySelector('i');
+  const text = toggleBtn.querySelector('span');
+
+  if (icon) {
+    icon.className = isHidden ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+  }
+  if (text) {
+    text.textContent = isHidden ? 'Hide password' : 'Show password';
+  }
 });
 
 // Check existing session

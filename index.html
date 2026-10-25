@@ -13,6 +13,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -103,9 +106,9 @@
               <button
                 id="togglePassword"
                 type="button"
-                class="text-xs text-brand hover:text-brand/80"
+                class="flex items-center gap-1.5 text-xs text-brand hover:text-brand/80 transition"
               >
-                Show password
+
               </button>
             </div>
 
@@ -146,15 +149,7 @@
           type="button"
           class="flex w-full items-center justify-center gap-3 rounded-none border border-zinc-700 bg-zinc-800/50 px-4 py-3 font-semibold transition hover:border-brand hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-brand"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path d="M12.48 10.92v3.28h7.84c-.24 1.84-2.21 5.16-7.84 5.16-4.84 0-8.76-4.04-8.76-9.04s3.92-9.04 8.76-9.04c2.73 0 4.6 1.17 5.65 2.18l2.59-2.59C19.05 1.62 16.1 0 12.48 0 6.64 0 2 5.64 2 11.48s4.64 11.48 10.48 11.48c6.18 0 10.44-4.3 10.44-10.44 0-.7-.08-1.33-.2-1.93h-10.24z" />
-          </svg>
+          <i class="fa-brands fa-google text-lg"></i>
           Continue with Google
         </button>
 
@@ -179,9 +174,8 @@
     </div>
 
   </main>
- 
+
   <script type="module" src="app.js"></script>
- 
+
   </body>
 </html>
-

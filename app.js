@@ -10,7 +10,7 @@ const authForm = document.getElementById('authForm');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const submitButton = document.getElementById('submitButton');
-const guestButton = document.getElementById('guestButton');
+const googleButton = document.getElementById('googleButton');
 const message = document.getElementById('message');
 const loginTab = document.getElementById('loginTab');
 const signupTab = document.getElementById('signupTab');
@@ -116,31 +116,15 @@ authForm?.addEventListener('submit', async (event) => {
   }
 });
 
-// Guest login
-guestButton?.addEventListener('click', async () => {
-  guestButton.disabled = false;
-  showMessage('Creating guest account...');
-
+// Google Login
+googleButton?.addEventListener('click', async () => {
   try {
-    const { data, error } = await supabase.auth.signInAnonymously();
-
-    if (error) {
-      throw error;
-    }
-
-    const guestId = data.user.id;
-
-    showMessage('Welcome to ZEX Guest! Your ID: ' + guestId);
-
-    // When you create a dashboard, redirect here:
-    // window.location.href = './dashboard.html';
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    });
+    if (error) throw error;
   } catch (error) {
-    showMessage(
-      error.message || 'Guest login failed. Check Supabase settings.',
-      true
-    );
-  } finally {
-    guestButton.disabled = false;
+    showMessage(error.message || 'Google login failed.', true);
   }
 });
 

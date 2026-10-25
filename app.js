@@ -22,9 +22,14 @@ function showMessage(text, isError = false) {
   if (!message) return;
 
   message.textContent = text;
+  message.classList.remove('hidden');
   message.className = isError
-    ? 'mt-4 text-sm text-red-400'
-    : 'mt-4 text-sm text-brand';
+    ? 'mt-5 rounded-none border px-4 py-3 text-sm border-red-500/30 bg-red-500/10 text-red-300'
+    : 'mt-5 rounded-none border px-4 py-3 text-sm border-emerald-500/30 bg-emerald-500/10 text-emerald-300';
+}
+
+function hideMessage() {
+  if (message) message.classList.add('hidden');
 }
 
 
@@ -37,17 +42,16 @@ function setMode(newMode) {
   }
 
   if (loginTab && signupTab) {
-    loginTab.classList.toggle('bg-brand', mode === 'login');
-    signupTab.classList.toggle('bg-brand', mode === 'signup');
+    loginTab.className = mode === 'login'
+      ? 'rounded-none bg-brand text-zinc-950 px-4 py-2.5 text-sm font-semibold transition'
+      : 'rounded-none px-4 py-2.5 text-sm font-semibold text-zinc-400 transition hover:text-white';
 
-    loginTab.classList.toggle('text-white', mode === 'login');
-    signupTab.classList.toggle('text-white', mode === 'signup');
-
-    loginTab.classList.toggle('text-zinc-400', mode !== 'login');
-    signupTab.classList.toggle('text-zinc-400', mode !== 'signup');
+    signupTab.className = mode === 'signup'
+      ? 'rounded-none bg-brand text-zinc-950 px-4 py-2.5 text-sm font-semibold transition'
+      : 'rounded-none px-4 py-2.5 text-sm font-semibold text-zinc-400 transition hover:text-white';
   }
 
-  showMessage('');
+  hideMessage();
 }
 
 loginTab?.addEventListener('click', () => setMode('login'));
@@ -138,6 +142,18 @@ guestButton?.addEventListener('click', async () => {
   } finally {
     guestButton.disabled = false;
   }
+});
+
+// Initial setup
+document.getElementById('year').textContent = new Date().getFullYear();
+
+document.getElementById('togglePassword')?.addEventListener('click', () => {
+  const passwordInputEl = document.getElementById('password');
+  if (!passwordInputEl) return;
+  const isHidden = passwordInputEl.type === 'password';
+  passwordInputEl.type = isHidden ? 'text' : 'password';
+  document.getElementById('togglePassword').textContent =
+    isHidden ? 'Hide password' : 'Show password';
 });
 
 // Check existing session

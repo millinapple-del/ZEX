@@ -118,7 +118,7 @@ authForm?.addEventListener('submit', async (event) => {
 
 // Guest login
 guestButton?.addEventListener('click', async () => {
-  guestButton.disabled = true;
+  guestButton.disabled = false;
   showMessage('Creating guest account...');
 
   try {

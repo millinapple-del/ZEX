@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +32,7 @@
 
 
       <div class="mb-8 text-center">
-        <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-600 text-2xl font-black shadow-lg shadow-violet-600/20">
+        <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-none bg-violet-600 text-2xl font-black shadow-lg shadow-violet-600/20">
           Z
         </div>
 
@@ -46,14 +46,14 @@
       </div>
 
 
-      <section class="rounded-2xl border border-zinc-800 bg-zinc-900/80 p-6 shadow-2xl sm:p-8">
+      <section class="rounded-none border border-zinc-800 bg-zinc-900/80 p-6 shadow-2xl sm:p-8">
 
 
-        <div class="mb-6 grid grid-cols-2 rounded-xl bg-zinc-800 p-1">
+        <div class="mb-6 grid grid-cols-2 rounded-none bg-zinc-800 p-1">
           <button
             id="loginTab"
             type="button"
-            class="rounded-lg bg-violet-600 px-4 py-2.5 text-sm font-semibold transition"
+            class="rounded-none bg-violet-600 px-4 py-2.5 text-sm font-semibold transition"
           >
             Sign In
           </button>
@@ -61,7 +61,7 @@
           <button
             id="signupTab"
             type="button"
-            class="rounded-lg px-4 py-2.5 text-sm font-semibold text-zinc-400 transition hover:text-white"
+            class="rounded-none px-4 py-2.5 text-sm font-semibold text-zinc-400 transition hover:text-white"
           >
             Create Account
           </button>
@@ -82,7 +82,7 @@
               autocomplete="email"
               placeholder="you@example.com"
               required
-              class="w-full rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-3 text-sm outline-none transition placeholder:text-zinc-600 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20"
+              class="w-full rounded-none border border-zinc-700 bg-zinc-950 px-4 py-3 text-sm outline-none transition placeholder:text-zinc-600 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20"
             >
           </div>
 
@@ -109,14 +109,14 @@
               placeholder="Enter your password"
               minlength="6"
               required
-              class="w-full rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-3 text-sm outline-none transition placeholder:text-zinc-600 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20"
+              class="w-full rounded-none border border-zinc-700 bg-zinc-950 px-4 py-3 text-sm outline-none transition placeholder:text-zinc-600 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20"
             >
           </div>
 
           <button
             id="submitButton"
             type="submit"
-            class="flex w-full items-center justify-center rounded-xl bg-violet-600 px-4 py-3 font-semibold transition hover:bg-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:cursor-not-allowed disabled:opacity-60"
+            class="flex w-full items-center justify-center rounded-none bg-violet-600 px-4 py-3 font-semibold transition hover:bg-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:cursor-not-allowed disabled:opacity-60"
           >
             Sign In
           </button>
@@ -136,7 +136,7 @@
         <button
           id="guestButton"
           type="button"
-          class="flex w-full items-center justify-center gap-3 rounded-xl border border-zinc-700 bg-zinc-800/50 px-4 py-3 font-semibold transition hover:border-violet-500 hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-500"
+          class="flex w-full items-center justify-center gap-3 rounded-none border border-zinc-700 bg-zinc-800/50 px-4 py-3 font-semibold transition hover:border-violet-500 hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-500"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -162,7 +162,7 @@
           id="message"
           role="status"
           aria-live="polite"
-          class="mt-5 hidden rounded-xl border px-4 py-3 text-sm"
+          class="mt-5 hidden rounded-none border px-4 py-3 text-sm"
         ></div>
 
         <p class="mt-6 text-center text-xs leading-5 text-zinc-500">
@@ -196,12 +196,12 @@
       const isLogin = mode === "login";
 
       loginTab.className = isLogin
-        ? "rounded-lg bg-violet-600 px-4 py-2.5 text-sm font-semibold transition"
-        : "rounded-lg px-4 py-2.5 text-sm font-semibold text-zinc-400 transition hover:text-white";
+        ? "rounded-none bg-violet-600 px-4 py-2.5 text-sm font-semibold transition"
+        : "rounded-none px-4 py-2.5 text-sm font-semibold text-zinc-400 transition hover:text-white";
 
       signupTab.className = !isLogin
-        ? "rounded-lg bg-violet-600 px-4 py-2.5 text-sm font-semibold transition"
-        : "rounded-lg px-4 py-2.5 text-sm font-semibold text-zinc-400 transition hover:text-white";
+        ? "rounded-none bg-violet-600 px-4 py-2.5 text-sm font-semibold transition"
+        : "rounded-none px-4 py-2.5 text-sm font-semibold text-zinc-400 transition hover:text-white";
 
       submitButton.textContent = isLogin ? "Sign In" : "Create Account";
 
